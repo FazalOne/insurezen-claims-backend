@@ -1,0 +1,38 @@
+name: InsureZen
+
+services:
+  postgres:
+    image: postgres:15
+    environment:
+      POSTGRES_DB: insurezen_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  makerservice:
+    build:
+      context: .
+      dockerfile: InsureZen.MakerService/Dockerfile
+    ports:
+      - "5100:8080"
+    environment:
+      - ConnectionStrings__DefaultConnection=Host=postgres;Database=insurezen_db;Username=postgres;Password=postgres
+    depends_on:
+      - postgres
+
+  checkerservice:
+    build:
+      context: .
+      dockerfile: InsureZen.CheckerService/Dockerfile
+    ports:
+      - "5101:8080"
+    environment:
+      - ConnectionStrings__DefaultConnection=Host=postgres;Database=insurezen_db;Username=postgres;Password=postgres
+    depends_on:
+      - postgres
+
+volumes:
+  postgres_data:

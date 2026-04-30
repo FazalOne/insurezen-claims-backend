@@ -1,0 +1,6 @@
+@InsureZen.CheckerService_HostAddress = http://localhost:5063
+
+GET {{InsureZen.CheckerService_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

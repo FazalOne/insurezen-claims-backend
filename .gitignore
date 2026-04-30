@@ -1,0 +1,22 @@
+# Build output
+bin/
+obj/
+
+# User/IDE files
+.vs/
+.vscode/
+*.user
+*.suo
+
+# Test and coverage output
+TestResults/
+*.trx
+coverage/
+*.coverage
+*.coveragexml
+
+# Runtime/log files
+*.log
+
+# Python virtual environment (local tooling only)
+.venv/
